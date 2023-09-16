@@ -1,5 +1,7 @@
 package models;
 
+import exceptions.AgeControlExc;
+import exceptions.SalaryExc;
 import models.enums.Position;
 
 public class Person {
@@ -61,7 +63,10 @@ public class Person {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(int age) throws AgeControlExc {
+        if (age<18){
+            throw new AgeControlExc("Возраст не соответствует");
+        }
         this.age = age;
     }
 
@@ -69,7 +74,10 @@ public class Person {
         return salary;
     }
 
-    public void setSalary(Double salary) {
+    public void setSalary(Double salary) throws SalaryExc {
+        if(salary<0){
+            throw new SalaryExc("Неверно введена сумма зарплаты. Она 0трицательная.Прошу быть внимательнее!!");
+        }
         this.salary = salary;
     }
 }
